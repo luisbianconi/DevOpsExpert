@@ -1,0 +1,12 @@
+apiVersion: v1
+entries:
+  giropops-senhas:
+  - apiVersion: v2
+    created: "2025-06-08T18:57:42.790992652-03:00"
+    description: Helm chart para o app giropops-senhas com frontend e Redis
+    digest: 0a52cba5bab649fbbc2bf5d1b76ed6749c7a048e908abcc8495cbf8433b5066a
+    name: giropops-senhas
+    urls:
+    - https://luisbianconi.github.io/helm-charts/giropops-senhas-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-06-08T18:57:42.790517471-03:00"
