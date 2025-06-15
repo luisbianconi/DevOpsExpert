@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: giropops-senhas
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://luisbianconi.github.io/helm-charts/
+    chart: giropops-senhas
+    targetRevision: 0.1.0
+    helm:
+      values: |
+        ingress:
+          host: giropops.luisbianconi.com
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: giropops
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+

@@ -1,0 +1,4 @@
+apiVersion: v2
+name: giropops-senhas
+version: 0.1.0
+description: Helm chart para o app giropops-senhas com frontend e Redis
