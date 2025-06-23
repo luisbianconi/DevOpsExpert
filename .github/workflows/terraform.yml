@@ -1,0 +1,27 @@
+name: Terraform Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.6.5
+      - uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Terraform Init
+        run: terraform -chdir=k3s-ec2-module init
+      - name: Terraform Apply
+        run: terraform -chdir=k3s-ec2-module apply -auto-approve
+        env:
+          TF_VAR_ssh_key_name: ${{ secrets.SSH_KEY_NAME }}
+          TF_VAR_region: ${{ secrets.AWS_REGION }}
